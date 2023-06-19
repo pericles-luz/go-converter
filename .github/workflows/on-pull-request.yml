@@ -18,15 +18,6 @@ jobs:
       with:
         go-version-file: go.mod
 
-    - name: Install wkhtmltopdf
-      run: |
-        sudo apt-get update
-        sudo apt-get -y install xfonts-75dpi xfonts-base
-        curl --silent --show-error --location --max-redirs 3 --fail --retry 3 --output wkhtmltopdf-linux-amd64.deb https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.bionic_amd64.deb
-        sudo dpkg -i wkhtmltopdf-linux-amd64.deb
-        sudo ldconfig
-        rm wkhtmltopdf-linux-amd64.deb
-
     - name: Verify dependencies
       run: go mod verify
 
@@ -48,6 +39,3 @@ jobs:
     - name: Run tests
       run: go test -race -vet=off ./...
 
-    - name: Build
-      # run: go build -a -ldflags "-linkmode external -extldflags '-static' -s -w" -o zimpe-back-go/server
-      run: go build -v -o binary
