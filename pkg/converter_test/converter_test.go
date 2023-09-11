@@ -121,3 +121,17 @@ func TestIntToString(t *testing.T) {
 	// Then
 	require.Equal(t, "123", result)
 }
+
+func TestMapInterfaceToMapString(t *testing.T) {
+	// Given
+	data := map[string]interface{}{
+		"cpf":       1,
+		"sentMedia": "2",
+	}
+	// When
+	result := converter.MapInterfaceToMapString(data)
+	// Then
+	require.NotEmpty(t, result)
+	require.Equal(t, "1", result["cpf"])
+	require.Equal(t, "2", result["sentMedia"])
+}

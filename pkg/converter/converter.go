@@ -56,6 +56,18 @@ func MapStringToMapInterface(data map[string]string) map[string]interface{} {
 	return result
 }
 
+// Convert a map[string]interface{} to a map[string]string
+func MapInterfaceToMapString(data map[string]interface{}) map[string]string {
+	if data == nil {
+		return nil
+	}
+	result := make(map[string]string)
+	for key, value := range data {
+		result[key] = fmt.Sprintf("%v", value)
+	}
+	return result
+}
+
 // Convert a struct to a map[string]interface{}
 // If some error occurs, return nil and the error
 func StructToMapInterface(data interface{}) (map[string]interface{}, error) {
